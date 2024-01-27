@@ -1,0 +1,52 @@
+import java.util.Scanner;
+public class MatrixAddition {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the number of rows and columns for the matrices:");
+        System.out.print("Rows: ");
+        int rows = scanner.nextInt();
+        System.out.print("Columns: ");
+        int columns = scanner.nextInt();
+
+        int[][] matrixA = inputMatrix("Matrix A", rows, columns, scanner);
+        int[][] matrixB = inputMatrix("Matrix B", rows, columns, scanner);
+
+        int[][] resultMatrix = addMatrices(matrixA, matrixB, rows, columns);
+
+        System.out.println("Resultant Matrix (A + B):");
+        displayMatrix(resultMatrix, rows, columns);
+    }
+    private static int[][] inputMatrix(String matrixName, int rows, int columns, Scanner scanner) {
+        System.out.println("Enter elements for " + matrixName + ":");
+        int[][] matrix = new int[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(matrixName + "[" + (i + 1) + "][" + (j + 1) + "]: ");
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+
+        return matrix;
+    }
+    private static int[][] addMatrices(int[][] matrixA, int[][] matrixB, int rows, int columns) {
+        int[][] resultMatrix = new int[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                resultMatrix[i][j] = matrixA[i][j] + matrixB[i][j];
+            }
+        }
+
+        return resultMatrix;
+    }
+    private static void displayMatrix(int[][] matrix, int rows, int columns) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
